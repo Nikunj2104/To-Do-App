@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PrivateRoute from "./Auth/PrivateRoute";
+import Login from "./Components/Login";
+import Dashboard from "./Components/Dashboard";
+import Four04 from "./Components/Four04";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <PrivateRoute exact path="/" component={Dashboard} />
+        <Route path="*" component={Four04} />
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
